@@ -1,0 +1,13 @@
+[2026-05-02 08:15:28 PM] 📱 Phone: 01893856900 | 🏢 Operator: robi | 🌐 IP: 127.0.0.1 | 💻 Device: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+[2026-05-02 08:27:04 PM] 📱 Phone: 01893856900 | 🏢 Operator: robi | 📍 Map: Location Denied | 🌐 IP: 192.168.0.101 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Mobile Safari/537.36
+[2026-05-06 12:09:22 AM] 📍 Map: Location Disabled | 🌐 IP: 127.0.0.1 | 💻 Device: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0
+[2026-05-06 12:09:25 AM] 📍 Map: Location Disabled | 🌐 IP: 127.0.0.1 | 💻 Device: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0
+[2026-05-06 12:27:10 AM] 📍 Map: Location Disabled | 🌐 IP: 127.0.0.1 | 💻 Device: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0
+[2026-05-06 12:41:49 AM] 📍 Map: Location Disabled | 🌐 IP: 192.168.0.105 | 💻 Device: Mozilla/5.0 (Linux; Android 12; LAVA LXX503 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.111 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/559.0.0.49.75;]
+[2026-05-06 12:42:07 AM] 📍 Map: Location Disabled | 🌐 IP: 192.168.0.105 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Mobile Safari/537.36
+[2026-05-06 12:42:55 AM] 📍 Map: Location Denied | 🌐 IP: 192.168.0.105 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Mobile Safari/537.36
+[2026-05-06 12:42:59 AM] 📍 Map: Location Denied | 🌐 IP: 192.168.0.105 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Mobile Safari/537.36
+[2026-05-06 12:43:20 AM] 📍 Map: Location Denied | 🌐 IP: 192.168.0.105 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Mobile Safari/537.36
+[2026-09-28 09:50:06 PM] 📍 Map: Location Disabled | 🌐 IP: 192.168.0.101 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36
+[2026-09-28 09:50:17 PM] 📍 Map: Location Disabled | 🌐 IP: 192.168.0.101 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36
+[2026-09-28 09:50:21 PM] 📍 Map: Location Disabled | 🌐 IP: 192.168.0.101 | 💻 Device: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36
